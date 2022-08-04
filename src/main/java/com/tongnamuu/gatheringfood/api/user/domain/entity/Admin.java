@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -37,6 +38,17 @@ public class Admin implements User {
 
     @Column(name = "gender", nullable = false)
     private String gender;
+
+    @Builder
+    private Admin(String name, String username, String encodedPassword, String email, String birthDay,
+                 String gender) {
+        this.name = name;
+        this.username = username;
+        this.encodedPassword = encodedPassword;
+        this.email = email;
+        this.birthDay = birthDay;
+        this.gender = gender;
+    }
 
     @Override
     public Admin login(PasswordEncoder passwordEncoder, String rawPassword) {
