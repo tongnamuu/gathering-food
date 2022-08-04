@@ -12,6 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -35,6 +36,13 @@ public class Member implements User {
 
     @ManyToMany(fetch = FetchType.EAGER)
     private Collection<Role> roles = new ArrayList<>();
+
+    @Builder
+    private Member(String name, String username, String encodedPassword) {
+        this.name = name;
+        this.username = username;
+        this.encodedPassword = encodedPassword;
+    }
 
     @Override
     public Member login(PasswordEncoder passwordEncoder, String rawPassword) {
