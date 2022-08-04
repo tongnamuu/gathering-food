@@ -48,7 +48,7 @@ class JwtTokenManagerImpl implements JwtTokenManager {
     private String createJwtToken(User user, Date expireDate) {
         return Jwts.builder()
             .signWith(SignatureAlgorithm.HS512, SECRET_KEY)
-            .setSubject(String.valueOf(user.getId()))
+            .setSubject(user.getId().toString())
             .setIssuedAt(new Date())
             .setExpiration(expireDate)
             .compact();
