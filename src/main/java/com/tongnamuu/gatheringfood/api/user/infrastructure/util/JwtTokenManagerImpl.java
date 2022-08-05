@@ -1,6 +1,6 @@
 package com.tongnamuu.gatheringfood.api.user.infrastructure.util;
 
-import com.tongnamuu.gatheringfood.api.user.domain.entity.User;
+import com.tongnamuu.gatheringfood.api.user.domain.entity.Member;
 import com.tongnamuu.gatheringfood.api.user.domain.usecase.result.JwtDecodeResult;
 import com.tongnamuu.gatheringfood.api.user.domain.util.JwtTokenManager;
 import io.jsonwebtoken.Claims;
@@ -22,15 +22,15 @@ class JwtTokenManagerImpl implements JwtTokenManager {
     private static final int REFRESH_TOKEN_DURATION = 7200;
 
     @Override
-    public String createAccessToken(User user) {
+    public String createAccessToken(Member member) {
         Date expireDate = Date.from(Instant.now().plusSeconds(ACCESS_TOKEN_DURATION));
-        return createJwtToken(user, expireDate);
+        return createJwtToken(member, expireDate);
     }
 
     @Override
-    public String createRefreshToken(User user) {
+    public String createRefreshToken(Member member) {
         Date expireDate = Date.from(Instant.now().plusSeconds(REFRESH_TOKEN_DURATION));
-        return createJwtToken(user, expireDate);
+        return createJwtToken(member, expireDate);
     }
 
     @Override
@@ -45,10 +45,10 @@ class JwtTokenManagerImpl implements JwtTokenManager {
             .build();
     }
 
-    private String createJwtToken(User user, Date expireDate) {
+    private String createJwtToken(Member member, Date expireDate) {
         return Jwts.builder()
             .signWith(SignatureAlgorithm.HS512, SECRET_KEY)
-            .setSubject(user.getId().toString())
+            .setSubject(member.getId().toString())
             .setIssuedAt(new Date())
             .setExpiration(expireDate)
             .compact();
