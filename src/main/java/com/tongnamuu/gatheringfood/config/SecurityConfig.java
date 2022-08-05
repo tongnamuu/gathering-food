@@ -29,7 +29,7 @@ public class SecurityConfig {
             .cors()
             .and()
             .authorizeHttpRequests((auth) -> auth
-                .mvcMatchers("/auth/login", "/auth/signup").permitAll()
+                .mvcMatchers("/auth/login", "/auth/signup", "/auth/logout").permitAll()
             )
             .authorizeHttpRequests((auth) -> auth
                 .anyRequest().authenticated()

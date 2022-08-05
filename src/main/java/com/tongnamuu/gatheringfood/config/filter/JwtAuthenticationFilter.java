@@ -32,6 +32,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         String jwtToken = getJwtToken(request);
         if(jwtToken!=null) {
             try {
+                log.info(jwtToken);
                 JwtDecodeResult result = jwtTokenManager.decodeJwtToken(jwtToken);
                 AbstractAuthenticationToken authenticationToken =
                     new UsernamePasswordAuthenticationToken(
