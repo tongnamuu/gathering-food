@@ -12,6 +12,7 @@ public class MemberLoginRequest {
     private final String username;
     private final String password;
 
+
     public MemberLoginInput toInput() {
         return MemberLoginInput.builder().username(this.username).password(this.password).build();
     }

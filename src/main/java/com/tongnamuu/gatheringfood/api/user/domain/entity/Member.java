@@ -3,7 +3,6 @@ package com.tongnamuu.gatheringfood.api.user.domain.entity;
 import static com.tongnamuu.gatheringfood.api.user.domain.validator.UserValidator.validateBirthday;
 import static com.tongnamuu.gatheringfood.api.user.domain.validator.UserValidator.validateName;
 
-import com.tongnamuu.gatheringfood.api.user.domain.util.PasswordEncoder;
 import com.tongnamuu.gatheringfood.api.user.domain.validator.UserValidator;
 import java.util.Collection;
 import java.util.LinkedHashSet;
@@ -51,15 +50,14 @@ public class Member {
     @Column(name = "description")
     private String description;
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER, targetEntity = Role.class)
     private Collection<Role> roles = new LinkedHashSet<>();
 
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.LAZY, targetEntity = Group.class)
     private Collection<Group> groups = new LinkedHashSet<>();
 
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.LAZY, targetEntity = Food.class)
     private Collection<Food> allergyFoodList = new LinkedHashSet<>();
-
 
     @Builder
     private Member(String name, String username, String encodedPassword, String birthday, Gender gender, String email,
@@ -88,10 +86,9 @@ public class Member {
         this.description = description;
     }
 
-    public Member login(PasswordEncoder passwordEncoder, String rawPassword) {
-        if (!passwordEncoder.matches(encodedPassword, rawPassword)) {
-            throw new IllegalArgumentException();
-        }
+    public Member addRole(Role role) {
+        Objects.requireNonNull(role);
+        this.roles.add(role);
         return this;
     }
 

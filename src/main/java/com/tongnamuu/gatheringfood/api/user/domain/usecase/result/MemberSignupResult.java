@@ -5,8 +5,10 @@ import java.time.ZonedDateTime;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.ToString;
 
 @Getter
+@ToString
 public class MemberSignupResult {
     private ZonedDateTime signupAt;
     private String username;

@@ -4,5 +4,9 @@ Content-Type: application/json
 {
   "name":"hello",
   "username":"tongnamuu@gmail.com",
-  "password":"password123"
+  "password":"Password123",
+  "isParticipant": true,
+  "email": "hello@naver.com",
+  "gender": "Male",
+  "birthday": "10102211"
 }
