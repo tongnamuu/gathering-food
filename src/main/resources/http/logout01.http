@@ -1,0 +1,2 @@
+POST http://localhost:8080/auth/logout
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNjU5NzI2NTE4LCJleHAiOjE2NTk3MjY4MTh9.dPhHI2zMw-zKQ7qX1MlZDK-35gkKy548BdhaF0cIXWZhzOFaSdKYnSgA-XsQ4Rjx-BxP2FWbCqG720zrSVzh1Q

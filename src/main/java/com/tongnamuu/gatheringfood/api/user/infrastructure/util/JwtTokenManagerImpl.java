@@ -37,7 +37,7 @@ class JwtTokenManagerImpl implements JwtTokenManager {
     public JwtDecodeResult decodeJwtToken(String token) {
         Claims claims = Jwts.parser()
             .setSigningKey(SECRET_KEY)
-            .parseClaimsJwt(token)
+            .parseClaimsJws(token)
             .getBody();
         Long memberId = Long.parseLong(claims.getSubject());
         return JwtDecodeResult.builder()
